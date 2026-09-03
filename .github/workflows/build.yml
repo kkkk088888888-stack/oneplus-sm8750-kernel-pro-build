@@ -390,7 +390,7 @@ jobs:
             none)     echo "no KSU"; exit 0 ;;
           esac
           rm -rf KernelSU drivers/kernelsu
-          git clone "$KSU_REPO" KernelSUnl
+          git clone "$KSU_REPO" KernelSU
           ln -sfn ../KernelSU/kernel drivers/kernelsu
           grep -q "kernelsu" drivers/Makefile || echo 'obj-$(CONFIG_KSU) += kernelsu/' >> drivers/Makefile
           grep -q "drivers/kernelsu/Kconfig" drivers/Kconfig || \

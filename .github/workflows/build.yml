@@ -416,7 +416,7 @@ jobs:
           cd KernelSU
           git apply --check "$GITHUB_WORKSPACE/patches/02_ksu.patch"
           git apply "$GITHUB_WORKSPACE/patches/02_ksu.patch"
-          working-directory: work/src
+        working-directory: work/src
 
       # ---------- Attribution ----------
       - name: ✍️ Configure attribution（配置署名）

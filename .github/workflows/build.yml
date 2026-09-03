@@ -295,7 +295,7 @@ jobs:
         working-directory: work/src
 
       - name: 🔧 Apply KSU hooks（应用 KSU 钩子）
-        if: ${{ inputs.ksu_type != 'none' }}
+        if: ${{ inputs.susfs_enable && inputs.ksu_type != 'none' }}
         run: patch -p1 -F3 --batch -f < $GITHUB_WORKSPACE/patches/split/00_ksu_hooks.patch
         working-directory: work/src
 
@@ -412,8 +412,10 @@ jobs:
       - name: 🔧 Apply SUSFS KSU adaptation（应用 SUSFS KSU 适配）
         if: ${{ inputs.susfs_enable && inputs.ksu_type != 'none' }}
         run: |
+          set -e
           cd KernelSU
-          git apply --check $GITHUB_WORKSPACE/patches/02_ksu.patch 2>/dev/null && git apply $GITHUB_WORKSPACE/patches/02_ksu.patch \
+          git apply --check "$GITHUB_WORKSPACE/patches/02_ksu.patch"
+          git apply "$GITHUB_WORKSPACE/patches/02_ksu.patch"
             || echo "WARN: 02_ksu.patch not applied automatically (KSU version may have changed)" >&2
         working-directory: work/src
 

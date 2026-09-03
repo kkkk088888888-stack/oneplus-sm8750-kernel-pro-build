@@ -391,6 +391,7 @@ jobs:
           esac
           rm -rf KernelSU drivers/kernelsu
           git clone "$KSU_REPO" KernelSU
+          git -C KernelSU checkout v4.1.0
           ln -sfn ../KernelSU/kernel drivers/kernelsu
           grep -q "kernelsu" drivers/Makefile || echo 'obj-$(CONFIG_KSU) += kernelsu/' >> drivers/Makefile
           grep -q "drivers/kernelsu/Kconfig" drivers/Kconfig || \
